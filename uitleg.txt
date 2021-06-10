@@ -1,0 +1,12 @@
+doel:
+dobbelstenen = atRandom 1-6 x 5
+analyseren van de worpen
+presenteren op het scorebord
+kies welke dobbelstenen je wil houden
+nieuwe worp met overige stenen
+3 attempts
+bonus 
+
+!! 
+eventlistener aanhangen aan dynamisch gegenereerde elementen
+analyse

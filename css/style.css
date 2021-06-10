@@ -1,0 +1,111 @@
+/*** CSS for Yahtzee exercise***/
+/** General **/
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(73, 73, 73);
+
+    height: 100%;
+    min-height: 100%;
+}
+
+header {
+    color: white;
+    
+    padding: 0.75em;
+    text-align: center;
+}
+
+nav {
+    color: white;
+    background-color: rgb(42, 42, 42);
+
+    padding: 0.75em;
+}
+
+#new-game {
+    margin-left: 2em;
+}
+
+h2 {
+    width: 100%;
+}
+/** Flexbox **/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+
+    background-color: rgb(73, 73, 73);
+    height: 100%;
+}
+
+.col {
+    width: 1000px;
+    height: 750px;
+
+    padding: 0.75em;
+    text-align: center;
+
+    border-radius: 1em;
+}
+
+/** Playing field **/
+/* Fields */
+.dice-col {
+    background-color: rgb(99, 122, 59);
+}
+
+.area {
+    width: 75%;
+    height: 25%;
+
+    margin: 0 auto;
+}
+
+.score-col {
+    background-color: rgb(246, 183, 124);
+}
+
+/* Dices */
+#dices {
+    clear: both;
+}
+#dices li {
+    display: inline-block;
+}
+#dices img {
+    margin: 2px;
+}
+.selected {
+    border: 2px solid red;
+    width: 70px;
+    height: 70px;
+}
+
+.selected img {
+    width: 66px;
+    height: 66px;
+}
+
+/* Score board */
+table {
+    min-width: 100%;
+}
+
+td, tr {
+    border: 1px solid black;
+    padding: 0.5em;
+}
+
+tr > td:nth-child(1) {
+    width: 70%;
+    text-align: left;
+}
+
+tr > td:nth-child(2) {
+    width: 30%;
+    text-align: center;
+}
+
+.highlight {
+    background-color: rgb(187, 136, 89);
+}
