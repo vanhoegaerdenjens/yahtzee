@@ -12,7 +12,7 @@ document.getElementById("dice-button").addEventListener("click", () => {
     htmlHelper.showTurns();
     if (game.attempts === 3) {
         game.storeDice();
-        game.sumEyes(game.dices, game.savedDices);
+        game.sumEyes();
     };
 });
 
