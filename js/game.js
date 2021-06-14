@@ -1,9 +1,10 @@
 "use strict";
 //storing the dice results
 class Game {
+    started = false;
     attempts = 0;
     turns = 1;
-    selectedDice = [];
+    turnDices = [];
     score = [
         { id: 1, value: 0, div: "ones" },
         { id: 2, value: 0, div: "twos" },
@@ -12,7 +13,7 @@ class Game {
         { id: 5, value: 0, div: "fives" },
         { id: 6, value: 0, div: "sixes" }
     ];
-    started = false;
+    
     constructor() {
 
     };
@@ -20,12 +21,9 @@ class Game {
     throwDice(selected) {
         let amount;
         this.started ? amount = 5 - selected : amount = 5;
-        this.emptyValue();
-        htmlHelper.clearUnselected();
         for (let i = 0; i < amount; i++) {
-            const dice = new Dice().rollDice();
-            this.addValue(dice);
-            htmlHelper.showDice(dice);
+            const dice = new Dice();
+            this.turnDices.push(dice);
         };
         this.started = true;
     };
@@ -56,8 +54,12 @@ class Game {
         return this.turns;
     };
 
-    addValue(object) { //push the sum of the eyes of the dice into corresponding id of score;
-        this.score.find(element => element.id === Number(object)).value += Number(object);
+    addValue() { //push the sum of the eyes of the dice into corresponding id of score;
+        const dices = this.turnDices;
+        const score = this.score
+        for (let object of dices) {
+            score.find(element => element.id === Number(object.id)).value += Number(object.value);
+        };
     };
 
     emptyValue() {

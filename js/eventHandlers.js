@@ -2,7 +2,10 @@
 //on click events
 document.getElementById("dice-button").addEventListener("click", () => {
     game.throwDice(htmlHelper.checkSelected());
-    htmlHelper.addScore();
+    game.addValue();
+    htmlHelper.showDice();
+    htmlHelper.showScore();
+    if (!game.started) { game.started = true; }
 });
 
 document.getElementById("new-game").addEventListener("click", () => {

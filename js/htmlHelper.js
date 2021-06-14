@@ -2,13 +2,16 @@
 //add to html functions
 
 const htmlHelper = {
-    showDice(value) {
-        const element = document.createElement("li");
-        const list = document.getElementById("dices");
-        element.dataset.value = `${value}`;
-        element.innerHTML = `<img src="../dobbelstenen/${value}.png" data-value="${value}">`;
-        element.addEventListener("click", function () { element.classList.toggle("selected"); });
-        list.appendChild(element);
+    showDice() {
+        const dices = game.turnDices;
+        for (const object of dices) {
+            const element = document.createElement("li");
+            const list = document.getElementById("dices");
+            element.dataset.value = `${object.id}`;
+            element.innerHTML = `<img src="../dobbelstenen/${object.id}.png">`;
+            element.addEventListener("click", function () { element.classList.toggle("selected"); });
+            list.appendChild(element);
+        };
     },
 
     showAttempts() {
@@ -39,8 +42,8 @@ const htmlHelper = {
         return selected.length;
     },
 
-    addScore() {
-        const score = game.score
+    showScore() {
+        const score = game.score;
         for (const object of score) {
             const element = document.createElement("a");
             const div = document.getElementById(`${object.div}`);
