@@ -7,7 +7,7 @@ const htmlHelper = {
         const list = document.getElementById("dices");
         element.dataset.value = `${value}`;
         element.innerHTML = `<img src="../dobbelstenen/${value}.png" data-value="${value}">`;
-        element.addEventListener("click", function() { element.classList.toggle("selected");});
+        element.addEventListener("click", function () { element.classList.toggle("selected"); });
         list.appendChild(element);
     },
 
@@ -39,10 +39,14 @@ const htmlHelper = {
         return selected.length;
     },
 
-    addScore(value) {
-        const cell = document.querySelector(`[data-value="${value}"]`);
-        diceScore[value]++;
-        cell.innerHTML = "";
-        cell.innerHTML = diceScore[value];
+    addScore() {
+        const score = game.score
+        for (const object of score) {
+            const element = document.createElement("a");
+            const div = document.getElementById(`${object.div}`);
+            div.innerHTML = "";
+            element.innerHTML = `${object.value}`;
+            div.appendChild(element);
+        }
     },
 };

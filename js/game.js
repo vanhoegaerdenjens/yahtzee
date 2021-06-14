@@ -3,44 +3,39 @@
 class Game {
     attempts = 0;
     turns = 1;
-    dices = [];
-    topCount = [
-        { id: 1, value: 0 },
-        { id: 2, value: 0 },
-        { id: 3, value: 0 },
-        { id: 4, value: 0 },
-        { id: 5, value: 0 },
-        { id: 6, value: 0 }
+    selectedDice = [];
+    score = [
+        { id: 1, value: 0, div: "ones" },
+        { id: 2, value: 0, div: "twos" },
+        { id: 3, value: 0, div: "threes" },
+        { id: 4, value: 0, div: "fours" },
+        { id: 5, value: 0, div: "fives" },
+        { id: 6, value: 0, div: "sixes" }
     ];
     started = false;
     constructor() {
 
     };
 
-    firstThrow() {
-        for (let i = 0; i < 5; i++) {
-            const dice = new Dice();
-            const result = dice.rollDice();
-            htmlHelper.showDice(result);
-        }
+    throwDice(selected) {
+        let amount;
+        this.started ? amount = 5 - selected : amount = 5;
+        this.emptyValue();
+        htmlHelper.clearUnselected();
+        for (let i = 0; i < amount; i++) {
+            const dice = new Dice().rollDice();
+            this.addValue(dice);
+            htmlHelper.showDice(dice);
+        };
         this.started = true;
     };
-
-    newThrow(amountSelected) {
-        const newDices = 5 - amountSelected;
-        for (let i = 0; i < newDices; i++) {
-            const dice = new Dice();
-            const result = dice.rollDice();
-            htmlHelper.showDice(result);
-        };
-    };
-
-    storeDice() {
-        const selectedDice = document.querySelectorAll("li");
-        const dices = this.dices;
-        selectedDice.forEach(function (element) {
+    
+    storeSelectedDice() {
+        const selected = document.querySelectorAll("li");
+        const selectedDice = this.selectedDice;
+        selected.forEach(function (element) {
             const value = element.dataset.value;
-            dices.push(value);
+            selectedDice.push(value);
         })
     };
 
@@ -61,10 +56,14 @@ class Game {
         return this.turns;
     };
 
-    sumEyes() { //push the sum of the eyes of each dice into corresponding id of topCount;
-        for (const dice of this.dices) {
-            this.topCount.find(element => element.id === Number(dice)).value += Number(dice);
-        };
+    addValue(object) { //push the sum of the eyes of the dice into corresponding id of score;
+        this.score.find(element => element.id === Number(object)).value += Number(object);
+    };
+
+    emptyValue() {
+        for (const object of this.score) {
+            object.value = 0;
+        }
     };
 
     calculateTotal() {
